@@ -9,7 +9,7 @@ public class InputData {
 
     public static String stringInput () {
         Scanner input = new Scanner(System.in);
-        return input.next();
+        return input.nextLine();
     }
 
 }
