@@ -32,12 +32,14 @@ public class Main {
             if (numberString1.length <= sizeArray) {
 
                 sizeArray = numberString1.length;   //  эта строчка нужна если (numberString1.length < sizeArray)
+                                                    //  тогда массив будет заполнет только тем количеством
+                                                    //  элементов, сколько их ввел пользователь с консоли
 
                 // Преобразование строчного массива в Int, и копирование результата в int массив array
 
-                for (int i = 0; i < sizeArray; i++) {                  //  sizeArray, а не numberString1.length
-                    array[i] = Integer.parseInt(numberString1[i]);     //  чтобы не было выхода за рамки массива
-                }                                                      //  если пользователь введет больше аргументов
+                for (int i = 0; i < sizeArray; i++) {
+                    array[i] = Integer.parseInt(numberString1[i]);
+                }
 
                 doingArray(array);
             }
@@ -47,8 +49,8 @@ public class Main {
             //  сколько соответствует изначально заданному пользователем размеру массива, а все лишние будут отброшены
 
             //  Но можно и усложнить вариант:
-            //  в случае, если пользователь ввел бОльшее количество аргументов, чем он вначале явно заявил,
-            //  тогда нужно заново инициализировать массив  */
+            //  в случае, если пользователь ввел бОльшее количество аргументов, чем он вначале заявил,
+            //  тогда можно заново инициализировать массив   */
 
             if (numberString1.length > sizeArray) {
                 sizeArray = numberString1.length;
