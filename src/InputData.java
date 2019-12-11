@@ -6,4 +6,10 @@ public class InputData {
         Scanner in = new Scanner(System.in);
         return in.nextInt();
     }
+
+    public static String stringInput () {
+        Scanner input = new Scanner(System.in);
+        return input.next();
+    }
+
 }
