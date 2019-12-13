@@ -83,26 +83,35 @@ public class ArrayLogic {
         //  Если эта переменная равна нулю (counter == 0) тогда выход из метода,
         //  в таком случае вернется пустой массив aMaxMinValues, все ячейки которого будут равны == 0
 
-        int[][] arrayResult = new int[2][array.length];
+        int[][] arrayResult = new int[2][(array.length)*2];
 
-        int counter = 0;
-        int counterInside;
+        boolean trigger;
+        int counter = 0;        //  хранит для числа номер ячейки в arrayResult
+        int counterNumber;      //  Число повторений
 
         for (int k = 0; k < (arrayCopy.length - 1); k++) {         //  Внешний цикл, по количеству элементов в массиве
-            counterInside = 0;
+            counterNumber = 1;
+            trigger = true;
             for (int i = 0; i < (arrayCopy.length - 1); i++) {      //  Внутренний цикл, сравнение каждого элемента
                                                                     //  со всеми остальными на совпадение
                 if (k == i) continue;
+
                 if (arrayCopy[k] == arrayCopy[i]) {
 
-                    arrayResult[0][counter] = arrayCopy[i];   //  Записывается число, которое имеет повторения
-                    counterInside++;
+                    if (trigger) {
+                        arrayResult[0][counter] = arrayCopy[i];    //  Записывается число, которое имеет повторения.
+                        counter++;                                 //  counter хранит номер ячейки в arrayResult
+                        trigger = false;
+                    }
+                    counterNumber++;
+                    arrayResult[1][counter] = counterNumber;      //  Записывается сколько раз встретилось это число
+
 
                 }
 
             }
-            arrayResult[1][counter] = counterInside;   //  Записывается сколько раз встретилось это число
-            counter++;
+
+
         }
 
         System.out.println("\n  My new array  :  \n\n" + Arrays.deepToString(arrayResult));
