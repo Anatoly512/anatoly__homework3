@@ -50,7 +50,6 @@ public class ArrayLogic {
     }
 
 
-
     public void PrintMaxMinNumbers (int ...array) {
         //  Вывод максимального и минимального значения повторений чисел в массиве
 
@@ -113,21 +112,51 @@ public class ArrayLogic {
 
         }
 
-        /*
-        //  Сортировка массива собственным методом MySortArrayDoing()
-        //  int[] arrayCopy = new int[array.length];
-        //  arrayCopy = Arrays.copyOf(MySortArrayDoing(arrayCopyUnsort), arrayCopy.length);
-        */
+        //  Сортировка двухмерного массива arrayResult[][]
 
-        //  1.  Создать новый массив int a[2][x]  но ровно на то количество елементов x сколько нужно
-        //      для этого использовать переменную counter, она хранит количество повторов.  х = (counter - 1)
-        //      Важно:   х = (counter - 1)
-        //  2.
-        //
+        boolean trigger2 = true;
+        int a;
+
+        while (trigger2) {
+            trigger2 = false;
+            for (int i = 0; i < (array.length-1); i++) {
+                if (arrayResult[0][i] < arrayResult[0][i + 1]) {
+                    a = arrayResult[0][i];
+                    arrayResult[0][i] = arrayResult[0][i + 1];
+                    arrayResult[0][i + 1] = a;
+                    trigger2 = true;
+                }
+
+            }
+
+        }
+
+        boolean trigger3 = true;
+        a = 0;
+
+        while (trigger3) {
+            trigger3 = false;
+            for (int i = 0; i < (array.length-1); i++) {
+                if (arrayResult[1][i] < arrayResult[1][i + 1]) {
+                    a = arrayResult[1][i];
+                    arrayResult[1][i] = arrayResult[1][i + 1];
+                    arrayResult[1][i + 1] = a;
+                    trigger3 = true;
+                }
+
+            }
+
+        }
+
+      //  Этот вывод на экран нужен только для тестирования
+      //  System.out.println("\n  My new sorted array  :  \n\n" + Arrays.deepToString(arrayResult));
 
 
-        System.out.println("\n  My new array  :  \n\n" + Arrays.deepToString(arrayResult));
+     //  aMaxMinValues[0]  =  максимальное значение
+     //  aMaxMinValues[1]  =  минимальное значение
 
+        aMaxMinValues[0] = arrayResult[1][0];
+        aMaxMinValues[1] = arrayResult[1][counter-1];
 
         return aMaxMinValues;
 

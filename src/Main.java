@@ -135,16 +135,11 @@ public class Main {
         arrayLogic.PrintMaxMinNumbers(array);
 
 
-        System.out.println();              //  Нужно только для фазы тестирования
-        arrayLogic.DisplayArray(array);    //  Нужно только для фазы тестирования
-
-
-
+        //  System.out.println();              //  Нужно только для фазы тестирования
+        //  arrayLogic.DisplayArray(array);    //  Нужно только для фазы тестирования
 
     }
 
-
 }
-
 
 //  Домашняя работа 3
