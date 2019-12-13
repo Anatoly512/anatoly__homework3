@@ -91,7 +91,7 @@ public class Main {
                 int[] array = new int[sizeArray];
 
 
-                // Преобразование строчного массива в Int, и копирование результата в int массив array
+               // Преобразование строчного массива в Int, и копирование результата в int массив array
 
                 for(int i = 0; i < sizeArray; i++) {                 // sizeArray здесь равен numberString1.length
                     array[i] = Integer.parseInt(numberString1[i]);
@@ -127,7 +127,7 @@ public class Main {
         arrayLogic.MySortArray(array);
 
 
-        //  Сортировка массива стандартным методом Arrays.sort() и вывод на дисплей с методом toString
+        //  Сортировка массива стандартным методом Arrays.sort() и вывод на экран с методом toString
         arrayLogic.SortArray(array);
 
 
