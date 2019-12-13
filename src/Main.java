@@ -111,25 +111,35 @@ public class Main {
 
     private void doingArray(int... array) {
 
+        {   //  Подсчет количества повторений числа 5
+            int number = 5;
+            int counter = arrayLogic.SearchNumber(number, array);
+            if (counter == 0)
+                System.out.println("\n" + "Number " + number + " is absent here.");
+            else
+                System.out.println("\n" + "Number " + number + " is counted " + counter + " times.");
+        }
+
+
+        //  Сортировка массива собственным методом (слева направо, по убыванию)
+        //  и вывод максимального (минимального) числа в массиве
+
         arrayLogic.MySortArray(array);
 
-        arrayLogic.DisplayArray(array);
+
+        //  Вывод максимального (минимального) значения повторений чисел в массиве
+        arrayLogic.SearchMaxNumber(array);
+
+
+        //  Сортировка массива стандартным методом Arrays.sort() и вывод на дисплей с методом toString
+        arrayLogic.SortArray(array);
 
 
 
-        /* Вывод массива на экран (нужно только для фазы тестирования)
+        arrayLogic.DisplayArray(array);    //  Нужно для фазы тестирования
 
-        System.out.println("\nARRAY  :   ");
-        int m = array.length;
 
-        do
-        {
-            System.out.println(array[m-1]);
-            m--;
-        }
-        while (m > 0);
 
-         */
 
     }
 
