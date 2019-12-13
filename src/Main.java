@@ -1,12 +1,16 @@
 
 public class Main {
+
+    ArrayLogic arrayLogic = new ArrayLogic();
+
     public static void main(String[] args) {
         new InputData();
-        choice();
+        Main doChoice = new Main();
+        doChoice.choice();
 
     }
 
-    private static void choice () {
+    private void choice () {
         System.out.print("\nPlease, enter variant  SIMPLE  -  1      ");
         System.out.print("\n              or  COMPLICATED  -  2   :  ");
         int variant = InputData.numberInput();
@@ -105,11 +109,13 @@ public class Main {
     }
 
 
-    private static void doingArray (int ...array) {
+    private void doingArray(int... array) {
 
-        System.out.println("\nВыполнение  doingArray  ");
+        arrayLogic.DisplayArray(array);
 
-        // Вывод массива на экран (нужно только для фазы тестирования)
+
+
+        /* Вывод массива на экран (нужно только для фазы тестирования)
 
         System.out.println("\nARRAY  :   ");
         int m = array.length;
@@ -121,11 +127,9 @@ public class Main {
         }
         while (m > 0);
 
+         */
+
     }
-
-
-
-
 
 
 }
