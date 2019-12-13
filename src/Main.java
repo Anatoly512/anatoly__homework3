@@ -127,13 +127,12 @@ public class Main {
         arrayLogic.MySortArray(array);
 
 
-        //  Вывод максимального (минимального) значения повторений чисел в массиве
-        arrayLogic.SearchMaxNumber(array);
-
-
         //  Сортировка массива стандартным методом Arrays.sort() и вывод на дисплей с методом toString
         arrayLogic.SortArray(array);
 
+
+        //  Вывод максимального (минимального) значения повторений чисел в массиве
+        arrayLogic.PrintMaxMinNumbers(array);
 
 
         System.out.println();              //  Нужно только для фазы тестирования

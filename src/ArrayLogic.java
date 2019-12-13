@@ -10,10 +10,10 @@ public class ArrayLogic {
 
         arrayCopy = Arrays.copyOf(MySortArrayDoing(array), array.length);
 
-        //  Теперь в массиве arrayCopy лежит отсортированный по возрастанию массив
+        //  Теперь в массиве arrayCopy лежит отсортированный по убыванию массив
 
         System.out.println("Max number in array: " + arrayCopy[0]);
-        System.out.println("Min number in array: " + arrayCopy[arrayCopy.length-1]);
+        System.out.print("Min number in array: " + arrayCopy[arrayCopy.length-1]);
 
         System.out.print("\nSorted array by increased method : ");
         DisplayArray(arrayCopy);
@@ -51,15 +51,39 @@ public class ArrayLogic {
 
 
 
-    public int[] SearchMaxNumber (int ...array) {
+    public void PrintMaxMinNumbers (int ...array) {
+        //  Вывод максимального и минимального значения повторений чисел в массиве
+
+        int[] aMaxMinValues = new int[2];       //  aMaxMinValues[0]  =  максимальное значение
+                                                //  aMaxMinValues[1]  =  минимальное значение
+
+        aMaxMinValues = Arrays.copyOf(SearchMaxMinNumbers(array), array.length);
+
+        System.out.println("\nMax repeatings : " + aMaxMinValues[0]);
+        System.out.println("Min repeatings : " + aMaxMinValues[1]);
+
+    }
+
+
+    private int[] SearchMaxMinNumbers (int ...array) {
         //  Поиск максимального и минимального значения повторений чисел в массиве
+        //  и возврат результата в виде массива из 2-х чисел
 
-        int[] arrayMaxMinValues = new int[2];   //  arrayMaxMinValues[0]  =  максимальное значение
-                                                //  arrayMaxMinValues[1]  =  минимальное значение
+        int[] aMaxMinValues = new int[2];       //  aMaxMinValues[0]  =  максимальное значение
+                                                //  aMaxMinValues[1]  =  минимальное значение
+
+        int[] arrayCopy = new int[array.length];
+        arrayCopy = Arrays.copyOf(array, array.length);
 
 
+        //  Создать двухмерный массив - размер в длину == array.length
+        //  В первом измерении хранится число, а во втором измерении - сколько раз оно повторяется
+        //  пересоздать массив, на этот раз такого размера, сколько есть повторяющихся чисел
+        //  для этого нужна переменная <сколько есть повторяющихся чисел>
+        //  Если эта переменная равна нулю (counter == 0) тогда выход из метода
 
-        return arrayMaxMinValues;
+
+        return aMaxMinValues;
 
     }
 
