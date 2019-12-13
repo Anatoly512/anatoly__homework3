@@ -92,8 +92,8 @@ public class ArrayLogic {
         for (int k = 0; k <= (arrayCopy.length - 1); k++) {         //  Внешний цикл, по количеству элементов в массиве
             counterNumber = 1;
             trigger = true;
-            for (int i = 0; i <= (arrayCopy.length - 1); i++) {      //  Внутренний цикл, сравнение каждого элемента
-                                                                     //  со всеми остальными на совпадение
+            for (int i = 0; i <= (arrayCopy.length - 1); i++) {     //  Внутренний цикл, сравнение каждого элемента
+                                                                    //  со всеми остальными на совпадение
                 if (k == i) continue;
 
                 if (arrayCopy[k] == arrayCopy[i]) {
@@ -113,8 +113,20 @@ public class ArrayLogic {
 
         }
 
-        System.out.println("\n  My new array  :  \n\n" + Arrays.deepToString(arrayResult));
+        /*
+        //  Сортировка массива собственным методом MySortArrayDoing()
+        //  int[] arrayCopy = new int[array.length];
+        //  arrayCopy = Arrays.copyOf(MySortArrayDoing(arrayCopyUnsort), arrayCopy.length);
+        */
 
+        //  1.  Создать новый массив int a[2][x]  но ровно на то количество елементов x сколько нужно
+        //      для этого использовать переменную counter, она хранит количество повторов.  х = (counter - 1)
+        //      Важно:   х = (counter - 1)
+        //  2.
+        //
+
+
+        System.out.println("\n  My new array  :  \n\n" + Arrays.deepToString(arrayResult));
 
 
         return aMaxMinValues;
