@@ -3,21 +3,21 @@ import java.util.Arrays;
 public class ArrayLogic {
 
     public void MySortArray (int ...array) {
-        //  Поиск максимального и минимального числа в массиве
+        //  Вывод максимального и минимального числа в массиве
         //  методом собственной сортировки массива (слева направо, по убыванию)
 
         int[] arrayCopy = new int[array.length];    // в arrayCopy будет храниться уже отсортированный массив
 
         arrayCopy = Arrays.copyOf(MySortArrayDoing(array), array.length);
 
-        //  Нужно только для фазы тестирования. ПОТОМ УДАЛИТЬ!
-        System.out.println("\nSorted by my method : ");
-        DisplayArray(arrayCopy);
-        System.out.println();
-        //
+        //  Теперь в массиве arrayCopy лежит отсортированный по возрастанию массив
 
-        System.out.print("\nMax number in array: " + arrayCopy[0]);
-        System.out.println("\nMin number in array: " + arrayCopy[arrayCopy.length-1]);
+        System.out.println("Max number in array: " + arrayCopy[0]);
+        System.out.println("Min number in array: " + arrayCopy[arrayCopy.length-1]);
+
+        System.out.print("\nSorted array by increased method : ");
+        DisplayArray(arrayCopy);
+
 
     }
 
@@ -26,7 +26,6 @@ public class ArrayLogic {
         //  и возврат отсортированного массива в вызывающий метод
 
         boolean trigger = true;
-        int counter = 0;
         int n;
 
         int[] arraySort = new int[array.length];              //  в новый массив arraySort будет записываться
@@ -34,27 +33,18 @@ public class ArrayLogic {
 
 
         while (trigger) {
-            if (arraySort[counter] < arraySort[counter+1]) {
-                n = arraySort[counter];
-                arraySort[counter] = arraySort[counter+1];
-                arraySort[counter+1] = n;
-                trigger = true;
-                  {
-                    if (counter < (array.length - 1)) {  // Если будет выходить за границы массива - заменить на -2
-                          counter++;}
-                    else counter = 0;
-                  }
-
-            }
-                else {
+            trigger = false;
+            for (int i = 0; i < (array.length-1); i++) {
+                if (arraySort[i] < arraySort[i + 1]) {
+                    n = arraySort[i];
+                    arraySort[i] = arraySort[i + 1];
+                    arraySort[i + 1] = n;
+                    trigger = true;
                 }
 
+            }
 
-            counter++;
         }
-
-
-
 
         return arraySort;
     }
@@ -62,12 +52,11 @@ public class ArrayLogic {
 
 
     public int[] SearchMaxNumber (int ...array) {
-        //  Поиск максимального\минимального значения повторений чисел в массиве
-
-        boolean
+        //  Поиск максимального и минимального значения повторений чисел в массиве
 
         int[] arrayMaxMinValues = new int[2];   //  arrayMaxMinValues[0]  =  максимальное значение
                                                 //  arrayMaxMinValues[1]  =  минимальное значение
+
 
 
         return arrayMaxMinValues;
@@ -104,7 +93,7 @@ public class ArrayLogic {
 
 
     public void DisplayArray (int ...array) {
-        System.out.println();
+
         int i = 0;
 
         do

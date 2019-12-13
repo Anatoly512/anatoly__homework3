@@ -136,7 +136,8 @@ public class Main {
 
 
 
-        arrayLogic.DisplayArray(array);    //  Нужно для фазы тестирования
+        System.out.println();              //  Нужно только для фазы тестирования
+        arrayLogic.DisplayArray(array);    //  Нужно только для фазы тестирования
 
 
 
