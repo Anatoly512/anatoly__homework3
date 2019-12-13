@@ -111,6 +111,8 @@ public class Main {
 
     private void doingArray(int... array) {
 
+        arrayLogic.MySortArray(array);
+
         arrayLogic.DisplayArray(array);
 
 

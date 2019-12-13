@@ -1,8 +1,16 @@
+import java.util.Arrays;
+
 public class ArrayLogic {
 
-    public void MySortArray (int ...array) {
+    public int[] MySortArray (int ...array) {
 
+        int[] array2 = new int[array.length];  // именно в новый массив array2 будет записываться результат
+        array2 = Arrays.copyOf(array, array.length);  // это нужно только для фазы тестирования, ПОТОМ УДАЛИТЬ!
+
+
+        return array2;
     }
+
 
     public void DisplayArray (int ...array) {
         System.out.println();
