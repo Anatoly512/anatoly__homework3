@@ -83,7 +83,7 @@ public class ArrayLogic {
         //  Если эта переменная равна нулю (counter == 0) тогда выход из метода,
         //  в таком случае вернется пустой массив aMaxMinValues, все ячейки которого будут равны == 0
 
-        int[][] arrayResult = new int[2][(array.length)*2];
+        int[][] arrayResult = new int[2][array.length];
 
         boolean trigger;
         int counter = 0;        //  хранит для числа номер ячейки в arrayResult
@@ -103,9 +103,9 @@ public class ArrayLogic {
                         counter++;                                 //  counter хранит номер ячейки в arrayResult
                         trigger = false;
                     }
-                    counterNumber++;
-                    arrayResult[1][counter] = counterNumber;      //  Записывается сколько раз встретилось это число
 
+                    counterNumber++;
+                    arrayResult[1][counter-1] = counterNumber;      //  Записывает сколько раз встретилось это число
 
                 }
 
