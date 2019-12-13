@@ -10,7 +10,7 @@ public class ArrayLogic {
 
         arrayCopy = Arrays.copyOf(MySortArrayDoing(array), array.length);
 
-        //  Нужно только для фазы тестирования.  ПОТОМ УБРАТЬ!
+        //  Нужно только для фазы тестирования. ПОТОМ УДАЛИТЬ!
         System.out.println("\nSorted by my method : ");
         DisplayArray(arrayCopy);
         System.out.println();
@@ -25,19 +25,46 @@ public class ArrayLogic {
         //  Сортировки массива слева направо, по убыванию
         //  и возврат отсортированного массива в вызывающий метод
 
-        int[] arrayCopy = new int[array.length];  // именно в новый массив arrayCopy будет записываться результат
-        arrayCopy = Arrays.copyOf(array, array.length);  // это нужно только для фазы тестирования, ПОТОМ УДАЛИТЬ!
+        boolean trigger = true;
+        int counter = 0;
+        int n;
+
+        int[] arraySort = new int[array.length];              //  в новый массив arraySort будет записываться
+        arraySort = Arrays.copyOf(array, array.length);       //  результат сортировки
+
+
+        while (trigger) {
+            if (arraySort[counter] < arraySort[counter+1]) {
+                n = arraySort[counter];
+                arraySort[counter] = arraySort[counter+1];
+                arraySort[counter+1] = n;
+                trigger = true;
+                  {
+                    if (counter < (array.length - 1)) {  // Если будет выходить за границы массива - заменить на -2
+                          counter++;}
+                    else counter = 0;
+                  }
+
+            }
+                else {
+                }
+
+
+            counter++;
+        }
 
 
 
 
-        return arrayCopy;
+        return arraySort;
     }
 
 
 
     public int[] SearchMaxNumber (int ...array) {
         //  Поиск максимального\минимального значения повторений чисел в массиве
+
+        boolean
 
         int[] arrayMaxMinValues = new int[2];   //  arrayMaxMinValues[0]  =  максимальное значение
                                                 //  arrayMaxMinValues[1]  =  минимальное значение
