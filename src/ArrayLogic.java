@@ -87,13 +87,13 @@ public class ArrayLogic {
 
         boolean trigger;
         int counter = 0;        //  хранит для числа номер ячейки в arrayResult
-        int counterNumber;      //  Число повторений
+        int counterNumber;      //  сколько повторений одного числа
 
         for (int k = 0; k <= (arrayCopy.length - 1); k++) {         //  Внешний цикл, по количеству элементов в массиве
             counterNumber = 1;
             trigger = true;
             for (int i = 0; i <= (arrayCopy.length - 1); i++) {      //  Внутренний цикл, сравнение каждого элемента
-                                                                    //  со всеми остальными на совпадение
+                                                                     //  со всеми остальными на совпадение
                 if (k == i) continue;
 
                 if (arrayCopy[k] == arrayCopy[i]) {
@@ -111,10 +111,11 @@ public class ArrayLogic {
 
             }
 
-
         }
 
         System.out.println("\n  My new array  :  \n\n" + Arrays.deepToString(arrayResult));
+
+
 
         return aMaxMinValues;
 
