@@ -2,10 +2,13 @@ import java.util.Arrays;
 
 public class ArrayLogic {
 
+    int counter = 0;        //  хранит сколько есть всего повторяющихся чисел
+
     public void MySortArray (int ...array) {
         //  Вывод максимального и минимального числа в массиве
         //  методом собственной сортировки массива (слева направо, по убыванию)
 
+        int minNumberOfArray = 0;
         int[] arrayCopy = new int[array.length];    // в arrayCopy будет храниться уже отсортированный массив
 
         arrayCopy = Arrays.copyOf(MySortArrayDoing(array), array.length);
@@ -13,7 +16,26 @@ public class ArrayLogic {
         //  Теперь в массиве arrayCopy лежит отсортированный по убыванию массив
 
         System.out.println("Max number in array: " + arrayCopy[0]);
-        System.out.print("Min number in array: " + arrayCopy[arrayCopy.length-1]);
+
+        //  Теперь вычислим минимальный элемент в массиве
+        //  Если пользователь вводил 0 с клавиатуры, то число 0 рассматривается как аргумент,
+        //  если нет - тогда идет поиск минимального числа из введенных пользователем
+
+        boolean trigger = true;
+        int c = arrayCopy.length-1;
+
+        if (!Main.zeroIf) {
+              while (trigger) {
+                trigger = false;
+                minNumberOfArray = arrayCopy[c];
+                if (minNumberOfArray == 0){
+                    c--;
+                    trigger = true;
+                }
+            }
+        }
+
+        System.out.print("Min number in array: " + minNumberOfArray);
 
         System.out.print("\nSorted array by increased method : ");
         DisplayArray(arrayCopy);
@@ -79,31 +101,28 @@ public class ArrayLogic {
         //  В первом измерении хранится число (только повторяющееся),
         //  а во втором измерении - сколько раз оно повторяется
 
-        int[][] arrayResult = new int[2][(array.length)*2];
+        int[][] arrayResult = new int[2][(array.length)];        //  В этот массив будет производиться сортировка
 
-        boolean trigger;
-        int counter = 0;        //  хранит для числа номер ячейки в arrayResult
-        int counterNumber;      //  сколько повторений одного числа
+        int counterNumber;           //  сколько повторений одного числа
 
         for (int k = 0; k <= (arrayCopy.length - 1); k++) {         //  Внешний цикл, по количеству элементов в массиве
             counterNumber = 1;
-            trigger = true;
+            if (arrayCopy[k] == 0) continue;                        //   !!!   введена проверка на ноль
+
             for (int i = 0; i <= (arrayCopy.length - 1); i++) {     //  Внутренний цикл, сравнение каждого элемента
                                                                     //  со всеми остальными на совпадение
                 if (k == i) continue;
 
-                if (arrayCopy[k] == arrayCopy[i]) {
 
-                    if (trigger) {
-                        arrayResult[0][counter] = arrayCopy[i];    //  Записывается число, которое имеет повторения.
-                        counter++;                                 //  counter хранит номер ячейки в arrayResult
-                        trigger = false;
-                    }
+                  if ((arrayCopy[k] == arrayCopy[i])) {
 
-                    counterNumber++;
-                    arrayResult[1][counter-1] = counterNumber;      //  Записывает сколько раз встретилось это число
+                   counterNumber++;
+                    arrayResult[0][counter] = arrayCopy[i];       //  Записывается число, которое имеет повторения.
+                    arrayResult[1][counter] = counterNumber;      //  Записывает сколько раз встретилось это число
 
-                }
+                     counter++;                                   //  counter хранит номер ячейки в arrayResult
+
+                  }
 
             }
 
@@ -112,16 +131,33 @@ public class ArrayLogic {
         //  Сортировка двухмерного массива arrayResult[][]
         //  каждая строка сортируется отдельно, в своем цикле
 
-        boolean trigger2 = true;
+        boolean trigger1 = true;
         int a;
 
-        while (trigger2) {
-            trigger2 = false;
+        while (trigger1) {
+            trigger1 = false;
             for (int i = 0; i < (array.length-1); i++) {
                 if (arrayResult[0][i] < arrayResult[0][i + 1]) {
                     a = arrayResult[0][i];
                     arrayResult[0][i] = arrayResult[0][i + 1];
                     arrayResult[0][i + 1] = a;
+                    trigger1 = true;
+                }
+
+            }
+
+        }
+
+        boolean trigger2 = true;
+        a = 0;
+
+        while (trigger2) {
+            trigger2 = false;
+            for (int i = 0; i < (array.length-1); i++) {
+                if (arrayResult[1][i] < arrayResult[1][i + 1]) {
+                    a = arrayResult[1][i];
+                    arrayResult[1][i] = arrayResult[1][i + 1];
+                    arrayResult[1][i + 1] = a;
                     trigger2 = true;
                 }
 
@@ -129,32 +165,22 @@ public class ArrayLogic {
 
         }
 
-        boolean trigger3 = true;
-        a = 0;
-
-        while (trigger3) {
-            trigger3 = false;
-            for (int i = 0; i < (array.length-1); i++) {
-                if (arrayResult[1][i] < arrayResult[1][i + 1]) {
-                    a = arrayResult[1][i];
-                    arrayResult[1][i] = arrayResult[1][i + 1];
-                    arrayResult[1][i + 1] = a;
-                    trigger3 = true;
-                }
-
-            }
-
-        }
-
       //  Этот вывод на экран нужен только для тестирования
-      //  System.out.println("\n  My new sorted array  :  \n\n" + Arrays.deepToString(arrayResult));
+        System.out.println("\n  My new sorted array  :  \n\n" + Arrays.deepToString(arrayResult));
 
 
-     //  aMaxMinValues[0]  =  максимальное значение
-     //  aMaxMinValues[1]  =  минимальное значение
+         aMaxMinValues[0] = arrayResult[1][0];       //  максимальное значение
 
-        aMaxMinValues[0] = arrayResult[1][0];
-        aMaxMinValues[1] = arrayResult[1][counter-1];
+      // aMaxMinValues[1]  =  минимальное значение
+
+     /*   try {
+            aMaxMinValues[1] = arrayResult[1][counter-1];
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+     */
+
+        aMaxMinValues[1]  = 1;
 
         return aMaxMinValues;
 

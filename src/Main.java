@@ -2,6 +2,7 @@
 public class Main {
 
     ArrayLogic arrayLogic = new ArrayLogic();
+    public static boolean zeroIf;
 
     public static void main(String[] args) {
         new InputData();
@@ -43,6 +44,7 @@ public class Main {
 
                 for (int i = 0; i < sizeArray; i++) {
                     array[i] = Integer.parseInt(numberString1[i]);
+                    if (array[i] == 0) zeroIf = true;
                 }
 
                 doingArray(array);
@@ -62,6 +64,7 @@ public class Main {
 
                 for (int i = 0; i < sizeArray; i++) {                    //  sizeArray здесь равен именно реальной
                     array2[i] = Integer.parseInt(numberString1[i]);      //  длине массива (numberString1.length);
+                    if (array[i] == 0) zeroIf = true;
                 }
 
                 doingArray(array2);    //  Здесь передается аргументом именно новый массив array2
@@ -95,6 +98,7 @@ public class Main {
 
                 for(int i = 0; i < sizeArray; i++) {                 // sizeArray здесь равен numberString1.length
                     array[i] = Integer.parseInt(numberString1[i]);
+                    if (array[i] == 0) zeroIf = true;
                 }
 
 
