@@ -5,7 +5,6 @@ public class Main {
     public static boolean zeroIf;
 
     public static void main(String[] args) {
-        new InputData();
         Main doChoice = new Main();
         doChoice.choice();
 
@@ -64,7 +63,7 @@ public class Main {
 
                 for (int i = 0; i < sizeArray; i++) {                    //  sizeArray здесь равен именно реальной
                     array2[i] = Integer.parseInt(numberString1[i]);      //  длине массива (numberString1.length);
-                    if (array[i] == 0) zeroIf = true;
+                    if (array2[i] == 0) zeroIf = true;
                 }
 
                 doingArray(array2);    //  Здесь передается аргументом именно новый массив array2

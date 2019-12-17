@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class ArrayLogic {
 
-    int counter = 0;        //  хранит сколько есть всего повторяющихся чисел
+    public int counter = 0;        //  хранит сколько есть всего повторяющихся чисел
 
     public void MySortArray (int ...array) {
         //  Вывод максимального и минимального числа в массиве
@@ -93,40 +93,47 @@ public class ArrayLogic {
         int[] aMaxMinValues = new int[2];       //  aMaxMinValues[0]  =  максимальное значение
                                                 //  aMaxMinValues[1]  =  минимальное значение
 
-        int[] arrayCopy = new int[array.length];
-        arrayCopy = Arrays.copyOf(array, array.length);
-
-
         //  Создается двухмерный массив - размер в длину == array.length
         //  В первом измерении хранится число (только повторяющееся),
         //  а во втором измерении - сколько раз оно повторяется
 
         int[][] arrayResult = new int[2][(array.length)];        //  В этот массив будет производиться сортировка
 
+        boolean trigger;
         int counterNumber;           //  сколько повторений одного числа
 
-        for (int k = 0; k <= (arrayCopy.length - 1); k++) {         //  Внешний цикл, по количеству элементов в массиве
+        for (int k = 0; k <= (array.length - 1); k++) {         //  Внешний цикл, по количеству элементов в массиве
             counterNumber = 1;
-            if (arrayCopy[k] == 0) continue;                        //   !!!   введена проверка на ноль
+            trigger = true;
+            if (array[k] == 0) continue;                        //   !!!   введена проверка на ноль
 
-            for (int i = 0; i <= (arrayCopy.length - 1); i++) {     //  Внутренний цикл, сравнение каждого элемента
-                                                                    //  со всеми остальными на совпадение
+            for (int i = 0; i <= (array.length - 1); i++) {     //  Внутренний цикл, сравнение каждого элемента
+                                                                //  со всеми остальными на совпадение
                 if (k == i) continue;
 
+                if (array[k] == array[i]) {
 
-                  if ((arrayCopy[k] == arrayCopy[i])) {
+                  if (trigger) {
+                       arrayResult[0][counter] = array[i];        //  Записывается число, которое имеет повторения.
+                       counter++;                                 //  counter хранит номер ячейки в arrayResult
+                       trigger = false;
+                  }
+
 
                    counterNumber++;
-                    arrayResult[0][counter] = arrayCopy[i];       //  Записывается число, которое имеет повторения.
-                    arrayResult[1][counter] = counterNumber;      //  Записывает сколько раз встретилось это число
+                   arrayResult[1][counter-1] = counterNumber;      //  Записывает сколько раз встретилось это число
 
-                     counter++;                                   //  counter хранит номер ячейки в arrayResult
 
-                  }
+                }
 
             }
 
         }
+
+
+        //  Этот вывод на экран нужен только для тестирования
+        System.out.println("\n  My UNSORTED array  :  \n\n" + Arrays.deepToString(arrayResult));
+
 
         //  Сортировка двухмерного массива arrayResult[][]
         //  каждая строка сортируется отдельно, в своем цикле
@@ -173,14 +180,15 @@ public class ArrayLogic {
 
       // aMaxMinValues[1]  =  минимальное значение
 
-     /*   try {
-            aMaxMinValues[1] = arrayResult[1][counter-1];
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-     */
+      //  // aMaxMinValues[1] = arrayResult[1][counter-1];
 
-        aMaxMinValues[1]  = 1;
+      //  try {
+      //      aMaxMinValues[1] = arrayResult[1][counter-1];
+      //  } catch (Exception e) {
+      //      e.printStackTrace();
+      //  }
+
+
 
         return aMaxMinValues;
 
