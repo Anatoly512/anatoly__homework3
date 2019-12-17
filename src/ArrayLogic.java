@@ -111,14 +111,13 @@ public class ArrayLogic {
         //  В первом измерении хранится число (только повторяющееся),
         //  а во втором измерении - сколько раз оно повторяется
 
+        int[][] arrayResult = new int[2][(array.length)];        //  В этот массив будет производиться сортировка
 
-       //  Этот вывод на экран нужен только для тестирования
+        //  Этот вывод на экран нужен только для тестирования
         //  System.out.println("\n  My arrayCopy  : \n");
         //  DisplayArray(arrayCopy);
         //  System.out.println();
 
-
-        int[][] arrayResult = new int[2][(array.length)];        //  В этот массив будет производиться сортировка
 
         boolean trigger;
         int counterNumber = 1;           //  сколько повторений одного числа
@@ -126,17 +125,17 @@ public class ArrayLogic {
         for (int k = 0; k <= (array.length - 1); k++) {         //  Внешний цикл, по количеству элементов в массиве
             counterNumber = 1;
             trigger = true;
-            if (array[k] == 0) continue;                        //   !!!   введена проверка на ноль
+            if (array[k] == 0) continue;                         //   !!!   введена проверка на ноль
 
-            for (int i = 0; i <= (array.length - 1); i++) {      //  Внутренний цикл, сравнение каждого элемента
-                                                                     //  со всеми остальными на совпадение
+            for (int i = 0; i <= (array.length - 1); i++) {        //  Внутренний цикл, сравнение каждого элемента
+                                                                   //  со всеми остальными на совпадение
                 if (k == i) continue;
 
                 if (array[k] == array[i]) {
 
                   if (trigger) {
                        arrayResult[0][counter] = array[i];        //  Записывается число, которое имеет повторения.
-                       counter++;                                     //  counter хранит номер ячейки в arrayResult
+                       counter++;                                 //  counter хранит номер ячейки в arrayResult
                        trigger = false;
                   }
 
@@ -152,7 +151,7 @@ public class ArrayLogic {
         }
 
 
-       //  Этот вывод на экран нужен только для тестирования
+       //  Этот вывод на экран нужен для тестирования
        //  System.out.println("\n  My UNSORTED array  :  \n\n" + Arrays.deepToString(arrayResult));
 
 
@@ -193,7 +192,7 @@ public class ArrayLogic {
 
         }
 
-      //  Этот вывод на экран нужен только для тестирования
+      //  Этот вывод на экран нужен для тестирования
       //  System.out.println("\n  My new sorted array  :  \n\n" + Arrays.deepToString(arrayResult));
 
 
@@ -201,7 +200,7 @@ public class ArrayLogic {
 
       // aMaxMinValues[1]  =  минимальное значение
 
-     //  Этот вывод на экран нужен только для тестирования
+     //  Этот вывод на экран нужен для тестирования
       //  System.out.println("\n  Counter  =  " + counter);
       //  System.out.println("  CounterNumber  =  " + counterNumber);
       //  System.out.println();
