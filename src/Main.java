@@ -2,7 +2,8 @@
 public class Main {
 
     ArrayLogic arrayLogic = new ArrayLogic();
-    public static boolean zeroIf;
+    public static boolean zeroIf;                     //  Эта переменная нужна чтобы понять, вводил ли пользователь
+                                                      //  хоть одно число 0. Тогда оно будет учитываться в рассчетах.
 
     public static void main(String[] args) {
         Main doChoice = new Main();

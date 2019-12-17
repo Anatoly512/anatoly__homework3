@@ -72,16 +72,30 @@ public class ArrayLogic {
     }
 
 
-    public void PrintMaxMinNumbers (int ...array) {
+    public void PrintMaxMinNumbers (int... array) {
         //  Вывод максимального и минимального значения повторений чисел в массиве
 
-        int[] aMaxMinValues = new int[2];                           //  aMaxMinValues[0]  =  максимальное значение
+        int sizeMaxMinValues = array.length;
+        int[] aMaxMinValues = new int[] { 0, 0 };                   //  aMaxMinValues[0]  =  максимальное значение
                                                                     //  aMaxMinValues[1]  =  минимальное значение
 
-        aMaxMinValues = Arrays.copyOf(SearchMaxMinNumbers(array), array.length);
 
-        System.out.println("\nMax repeatings : " + aMaxMinValues[0]);
-        System.out.println("Min repeatings : " + aMaxMinValues[1]);
+          if (array.length <= 1) sizeMaxMinValues = 2;          //  Проверка, если пользователь ввел всего одну цифру
+
+        aMaxMinValues = Arrays.copyOf(SearchMaxMinNumbers(array), sizeMaxMinValues);
+
+        try {
+            System.out.println("\nMax repeatings : " + aMaxMinValues[0]);
+            System.out.println("Min repeatings : " + aMaxMinValues[1]);
+        }
+        catch(ArrayIndexOutOfBoundsException ex)
+        {
+            System.out.println("\nПроизошел выход за пределы массива !\n");   //  Это чтобы не обрушить программу
+                                                                              //  в случае выхода за границы массива
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
 
     }
 
@@ -97,32 +111,31 @@ public class ArrayLogic {
         //  В первом измерении хранится число (только повторяющееся),
         //  а во втором измерении - сколько раз оно повторяется
 
-        int[] arrayCopy = new int[array.length];
-        arrayCopy = Arrays.copyOf(MySortArrayDoing(array), array.length);
 
-        //  Этот вывод на экран нужен только для тестирования
-        System.out.println("\n  My arrayCopy  : \n");
-        DisplayArray(arrayCopy);
-        System.out.println();
+       //  Этот вывод на экран нужен только для тестирования
+        //  System.out.println("\n  My arrayCopy  : \n");
+        //  DisplayArray(arrayCopy);
+        //  System.out.println();
 
-        int[][] arrayResult = new int[2][(arrayCopy.length)];        //  В этот массив будет производиться сортировка
+
+        int[][] arrayResult = new int[2][(array.length)];        //  В этот массив будет производиться сортировка
 
         boolean trigger;
-        int counterNumber;           //  сколько повторений одного числа
+        int counterNumber = 1;           //  сколько повторений одного числа
 
-        for (int k = 0; k <= (arrayCopy.length - 1); k++) {         //  Внешний цикл, по количеству элементов в массиве
+        for (int k = 0; k <= (array.length - 1); k++) {         //  Внешний цикл, по количеству элементов в массиве
             counterNumber = 1;
             trigger = true;
-            if (arrayCopy[k] == 0) continue;                        //   !!!   введена проверка на ноль
+            if (array[k] == 0) continue;                        //   !!!   введена проверка на ноль
 
-            for (int i = 0; i <= (arrayCopy.length - 1); i++) {      //  Внутренний цикл, сравнение каждого элемента
+            for (int i = 0; i <= (array.length - 1); i++) {      //  Внутренний цикл, сравнение каждого элемента
                                                                      //  со всеми остальными на совпадение
                 if (k == i) continue;
 
-                if (arrayCopy[k] == arrayCopy[i]) {
+                if (array[k] == array[i]) {
 
                   if (trigger) {
-                       arrayResult[0][counter] = arrayCopy[i];        //  Записывается число, которое имеет повторения.
+                       arrayResult[0][counter] = array[i];        //  Записывается число, которое имеет повторения.
                        counter++;                                     //  counter хранит номер ячейки в arrayResult
                        trigger = false;
                   }
@@ -139,8 +152,8 @@ public class ArrayLogic {
         }
 
 
-        //  Этот вывод на экран нужен только для тестирования
-        System.out.println("\n  My UNSORTED array  :  \n\n" + Arrays.deepToString(arrayResult));
+       //  Этот вывод на экран нужен только для тестирования
+       //  System.out.println("\n  My UNSORTED array  :  \n\n" + Arrays.deepToString(arrayResult));
 
 
         //  Сортировка двухмерного массива arrayResult[][]
@@ -181,7 +194,7 @@ public class ArrayLogic {
         }
 
       //  Этот вывод на экран нужен только для тестирования
-        System.out.println("\n  My new sorted array  :  \n\n" + Arrays.deepToString(arrayResult));
+      //  System.out.println("\n  My new sorted array  :  \n\n" + Arrays.deepToString(arrayResult));
 
 
          aMaxMinValues[0] = arrayResult[1][0];       //  максимальное значение
@@ -189,11 +202,16 @@ public class ArrayLogic {
       // aMaxMinValues[1]  =  минимальное значение
 
      //  Этот вывод на экран нужен только для тестирования
-        System.out.println("\n  Counter  =  " + counter);
-        System.out.println();
+      //  System.out.println("\n  Counter  =  " + counter);
+      //  System.out.println("  CounterNumber  =  " + counterNumber);
+      //  System.out.println();
 
-        try {
-            aMaxMinValues[1] = arrayResult[1][counter-1];
+        try {                                                        //  FIX    Баг исправлен!
+            if (counter <= 0) counter = 1;                           //  Именно здесь порылась собака из класса кошек
+
+            aMaxMinValues[1] = arrayResult[1][counter-1];         //  В случае если повторений чисел нет вообще
+                                                                  //  т.е. переменная (counter = 0), то происходил
+                                                                  //  выход за границы массива в выражении [counter-1]
         }
         catch(ArrayIndexOutOfBoundsException ex){
             System.out.println("\nПроизошел выход за пределы массива !\n");     //  Это чтобы не обрушить программу
