@@ -182,11 +182,17 @@ public class ArrayLogic {
 
       //  // aMaxMinValues[1] = arrayResult[1][counter-1];
 
-      //  try {
-      //      aMaxMinValues[1] = arrayResult[1][counter-1];
-      //  } catch (Exception e) {
-      //      e.printStackTrace();
-      //  }
+
+        try {
+            aMaxMinValues[1] = arrayResult[1][counter-1];
+        }
+        catch(ArrayIndexOutOfBoundsException ex){
+            System.out.println("\nArrayIndexOutOfBounds !\n");     //  Это чтобы не обрушить программу
+                                                                   //  в случае выхода за границы индекса
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
 
 
 
